@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+  </head>
+  <body>
+    <header>
+    <script>
+    function cal() {
+      let score = 0;
+      let temp = Number(document.getElementById('bt').value)
+      let pr = Number(document.getElementById('pr').value)
+      let rr = Number(document.getElementById('rr').value)
+      let sbp = Number(document.getElementById('sbp').value)
+      if (temp <= 35) {
+        score+=2;
+      }
+      else if ( temp <= 36) {
+        score ++;
+      }
+      else if (temp <= 38) {
+        score += 0;
+      }
+      else if (temp < 38.5) {
+        score += 1;
+      }
+      else {
+        score += 2;
+      }
+
+      if (pr <= 40) {
+        score+=3;
+      }
+      else if ( pr <= 50) {
+        score ++;
+      }
+      else if (pr <= 100) {
+        score += 0;
+      }
+      else if (pr <= 120) {
+        score += 1;
+      }
+      else if (pr < 140) {
+        score += 2;
+      }
+      else {
+        score += 3;
+      }
+
+      if (document.getElementById('ven').checked == false) {
+
+      if (rr <= 8) {
+        score+=3;
+      }
+      else if (rr <= 20) {
+        score += 0;
+      }
+      else if (rr <= 25) {
+        score += 1;
+      }
+      else if (rr <= 35) {
+        score += 2;
+      }
+      else {
+        score += 3;
+      }
+      }
+      else {
+        score += 2;
+      }
+
+      if (document.getElementById('ven').checked) {
+         score += 3;
+      }
+      else {
+      if (sbp <= 80) {
+        score+=3;
+      }
+      else if ( sbp <= 90) {
+        score+=2;
+      }
+      else if (sbp <= 100) {
+        score += 1;
+      }
+      else if (sbp <= 180) {
+        score += 0;
+      }
+      else if (sbp < 200) {
+        score += 1;
+      }
+      else {
+        score += 2;
+      }
+      }
+
+      if (document.getElementById('c1').checked  ) {
+        score += 0;
+      }
+      if (document.getElementById('c2').checked  ) {
+        score += 1;
+      }
+      if (document.getElementById('c3').checked  ) {
+        score += 1;
+      }
+      if (document.getElementById('c4').checked  ) {
+        score += 2;
+      }
+      if (document.getElementById('c5').checked  ) {
+        score += 3;
+      }
+
+      document.getElementById('out').innerHTML = 'Modified SOS score: ' + String(score);
+      console.log(score, temp,pr,rr,sbp);
+      return [score, temp,pr,rr,sbp];
+
+    }
+    </script>
+
+    </header>
+    <main>
+    <p id='out'>Modified SOS score: </p>
+    อุณหภูมิ <input type='number' id='bt'><br>
+     ชีพจร <input type='number' id='pr'><br>
+      หายใจ <input type='number' id='rr'><br>
+       ความดันโลหิตค่าบน <input type='number' id='sbp'><br>
+      <input type='checkbox' id='ven'>ใส่เครื่องช่วยหายใจ<br>
+       <input type='checkbox' id='inno'>ใช้ยาเพิ่มความดัน<br>
+       ความรู้สึกตัว <br>
+       <input type='radio' id='c1' name='c'>ตื่นดี พูดคุยรู้เรื่อง <br>
+       <input type='radio' id='c2' name='c'>สับสน กระสับกระส่ายที่เพิ่งเกิดขิ้น <br>
+       <input type='radio' id='c3' name='c'>ซึม แต่เรียกแล้วลืมตา <br>
+       <input type='radio' id='c4' name='c'>ซึมมาก ต้องกระตุ้นจึงลืมตา <br>
+       <input type='radio' id='c5' name='c'>ไม่รู้สึกตัว แม้กระตุ้นแล้ว <br>
+       <br>
+       <button onclick='cal()'>cal</button>
+
+
+    </main>
+    <footer></footer>
+  </body>
+</html>
