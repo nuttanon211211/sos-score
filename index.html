@@ -7,6 +7,12 @@
   </head>
   <body>
     <header>
+    <style>
+    button {
+      padding: 4px 9px;
+      font-size: medium;
+    }
+    </style>
     <script>
     function cal() {
       let score = 0;
@@ -14,85 +20,105 @@
       let pr = Number(document.getElementById('pr').value)
       let rr = Number(document.getElementById('rr').value)
       let sbp = Number(document.getElementById('sbp').value)
-      if (temp <= 35) {
-        score+=2;
-      }
-      else if ( temp <= 36) {
-        score ++;
-      }
-      else if (temp <= 38) {
-        score += 0;
-      }
-      else if (temp < 38.5) {
-        score += 1;
+
+      if (document.getElementById('bt').value == "") {
+        score += 0
       }
       else {
-        score += 2;
+        if (temp <= 35) {
+          score+=2;
+        }
+        else if ( temp <= 36) {
+          score ++;
+        }
+        else if (temp <= 38) {
+          score += 0;
+        }
+        else if (temp < 38.5) {
+          score += 1;
+        }
+        else {
+          score += 2;
+        }
       }
 
-      if (pr <= 40) {
-        score+=3;
-      }
-      else if ( pr <= 50) {
-        score ++;
-      }
-      else if (pr <= 100) {
+      if (document.getElementById('pr').value == "") {
         score += 0;
       }
-      else if (pr <= 120) {
-        score += 1;
-      }
-      else if (pr < 140) {
-        score += 2;
-      }
       else {
-        score += 3;
+        if (pr <= 40) {
+          score+=3;
+        }
+        else if ( pr <= 50) {
+          score ++;
+        }
+        else if (pr <= 100) {
+          score += 0;
+        }
+        else if (pr <= 120) {
+          score += 1;
+        }
+        else if (pr < 140) {
+          score += 2;
+        }
+        else {
+          score += 3;
+        }
       }
 
       if (document.getElementById('ven').checked == false) {
-
-      if (rr <= 8) {
-        score+=3;
-      }
-      else if (rr <= 20) {
-        score += 0;
-      }
-      else if (rr <= 25) {
-        score += 1;
-      }
-      else if (rr <= 35) {
-        score += 2;
+        if (document.getElementById('rr').value == "") {
+          score += 0;
+        }
+        else {
+          if (rr <= 8) {
+            score+=3;
+          }
+          else if (rr <= 20) {
+            score += 0;
+          }
+          else if (rr <= 25) {
+            score += 1;
+          }
+          else if (rr <= 35) {
+            score += 2;
+          }
+          else {
+            score += 3;
+          }
+        }
       }
       else {
-        score += 3;
-      }
-      }
-      else {
         score += 2;
       }
 
-      if (document.getElementById('ven').checked) {
+      if (document.getElementById('inno').checked) {
          score += 3;
       }
       else {
-      if (sbp <= 80) {
-        score+=3;
-      }
-      else if ( sbp <= 90) {
-        score+=2;
-      }
-      else if (sbp <= 100) {
-        score += 1;
-      }
-      else if (sbp <= 180) {
-        score += 0;
-      }
-      else if (sbp < 200) {
-        score += 1;
-      }
-      else {
-        score += 2;
-      }
+        if (document.getElementById('sbp').value == "") {
+          score += 0;
+        }
+        else {
+          if (sbp <= 80) {
+            score+=3;
+          }
+          else if ( sbp <= 90) {
+            score+=2;
+          }
+          else if (sbp <= 100) {
+            score += 1;
+          }
+          else if (sbp <= 180) {
+            score += 0;
+          }
+          else if (sbp < 200) {
+            score += 1;
+          }
+          else {
+            score += 2;
+          }
+        }
       }
 
       if (document.getElementById('c1').checked  ) {
@@ -113,6 +139,7 @@
 
       document.getElementById('out').innerHTML = 'Modified SOS score: ' + String(score);
       console.log(score, temp,pr,rr,sbp);
+      window.scrollTo({top:0}) ;
       return [score, temp,pr,rr,sbp];
 
     }
