@@ -17,12 +17,26 @@
     h2 {
       color: #514a0e;
      -webkit-text-stroke-width: 1.5px;
-    -webkit-text-stroke-color: #fdd677;
-    font-weight: bold;
+     -webkit-text-stroke-color: #fdd677;
+     font-weight: bold;
      text-shadow: 2px 2px #826060;
       outline-color: #102000;
       outline-width: thick;
+
+     -webkit-animation: glow 1s ease-in-out infinite alternate;
+     -moz-animation: glow 1s ease-in-out infinite alternate;
+     animation: glow 1s ease-in-out infinite alternate;
     }
+
+    @-webkit-keyframes glow {
+  from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #43d90d, 0 0 40px #53ce0e, 0 0 50px #1dc106, 0 0 60px #40f000, 0 0 70px #1cc604;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+}
+
     button {
       padding: 4px 9px;
       font-size: large;
