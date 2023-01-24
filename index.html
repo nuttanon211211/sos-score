@@ -3,17 +3,42 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <link rel="icon" type="image/png" sizes="32x32" href="logo32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="logo16.png">
+    <link rel="apple-touch-icon" href="logo180.png">
+    <title>sos score</title>
   </head>
   <body>
     <header>
     <style>
+    body {
+      background-color: #ffd0d8;
+    }
     button {
       padding: 4px 9px;
-      font-size: medium;
+      font-size: large;
+      border-radius: 5px;
+      border-color: #e140a2;
+      border-style: revert;
+      background-color: pink;
+      border-width: thick;
+      color: firebrick;
+      text-shadow: 1px 1px #666;
+      outline-color: #102000;
+      outline-width: thick;
+    }
+    input {
+      width: 100px;
+      max-width: fit-content;
+    }
+    div.c1 {
+      border-radius: 5px;
+      border-color: #000;
+      border-style: outset;
     }
     </style>
     <script>
+
     function cal() {
       let score = 0;
       let temp = Number(document.getElementById('bt').value)
@@ -139,29 +164,81 @@
 
       document.getElementById('out').innerHTML = 'Modified SOS score: ' + String(score);
       console.log(score, temp,pr,rr,sbp);
+      evalscore(score);
       window.scrollTo({top:0}) ;
+
       return [score, temp,pr,rr,sbp];
+
+    }
+
+    function clear2() {
+      document.getElementById('bt').value= '';
+      document.getElementById('pr').value= '';
+      document.getElementById('rr').value= '';
+      document.getElementById('sbp').value= '';
+      document.getElementById('ven').checked = false;
+      document.getElementById('inno').checked = false;
+      document.getElementById('c1').checked = false;
+      document.getElementById('c2').checked = false;
+      document.getElementById('c3').checked = false;
+      document.getElementById('c4').checked = false;
+      document.getElementById('c5').checked = false;
+      document.getElementById('out').innerHTML = 'Modified SOS score: ';
+      document.getElementById('out2').innerHTML = 'Suggestion: ';
+      document.getElementById('div1').style.background = '#ffd0d8';
+      window.scrollTo({top:0});
+
+    }
+
+    function evalscore(score) {
+      let sug = 'Suggestion: <br>'
+      if (score==0) {
+        console.log('0');
+        sug += '&nbsp;- Record V/S ตามปกติ<br>&nbsp;- ประเมิน sos score ตามปกติ';
+        document.getElementById('div1').style.background = '#a0ffa9';
+      }
+      else if (score >= 1 && score <= 2) {
+        console.log('1-2');
+        sug += '&nbsp;- รายงานพยาบาลเจ้าของไข้<br>';
+        sug += '&nbsp;- พยาบาลเจ้าของไข้พิจารณารายงานแพทย์ตามความเหมาะสม<br>';
+        sug += '&nbsp;- Record V/S, I/O q 4-6 hr<br>';
+        sug += '&nbsp;- ประเมิน sos score ตามความเหมาะสม';
+        document.getElementById('div1').style.background = '#fff283';
+      }
+      else if (score >= 3) {
+        console.log('3');
+        sug += '&nbsp;- รายงานพยาบาลเจ้าของไข้<br>';
+        sug += '&nbsp;- รายงานแพทย์ทันที<br>';
+        sug += '&nbsp;- พิจารณาย้ายผู้ป่วยมาล็อคกลางหรือ ICU<br>';
+        sug += '&nbsp;- ค้นหาสาเหตุที่ทำให้ผู้ป่วยแย่ลง เช่น Sepsis, Acute MI, Acute PE, etc.';
+        document.getElementById('div1').style.background = '#ff9b9b' ;
+      }
+      document.getElementById('out2').innerHTML = sug;
 
     }
     </script>
 
     </header>
     <main>
+    <div class='c1' id='div1'>
     <p id='out'>Modified SOS score: </p>
-    อุณหภูมิ <input type='number' id='bt'><br>
-     ชีพจร <input type='number' id='pr'><br>
-      หายใจ <input type='number' id='rr'><br>
-       ความดันโลหิตค่าบน <input type='number' id='sbp'><br>
-      <input type='checkbox' id='ven'>ใส่เครื่องช่วยหายใจ<br>
-       <input type='checkbox' id='inno'>ใช้ยาเพิ่มความดัน<br>
+    <p id='out2'>Suggestion: </p>
+    </div>
+    อุณหภูมิ <input type='number' id='bt' placeholder='degree C' min='32' max='42' step='0.5' onclick='this.select()' onchange='cal()'><br>
+    ชีพจร <input type='number' id='pr' placeholder='bpm' min='0' max='200' onclick='this.select()' onchange='cal()'><br>
+    หายใจ <input type='number' id='rr' placeholder='per min.' min='0' max='100' onclick='this.select()' onchange='cal()'><br>
+    ความดันโลหิตค่าบน <input type='number' id='sbp' placeholder='mmHg' min='0' max='260' onclick='this.select()' onchange='cal()'><br>
+      <input type='checkbox' id='ven' onclick='cal()'>ใส่เครื่องช่วยหายใจ<br>
+       <input type='checkbox' id='inno' onclick='cal()'>ใช้ยาเพิ่มความดัน<br>
        ความรู้สึกตัว <br>
-       <input type='radio' id='c1' name='c'>ตื่นดี พูดคุยรู้เรื่อง <br>
-       <input type='radio' id='c2' name='c'>สับสน กระสับกระส่ายที่เพิ่งเกิดขิ้น <br>
-       <input type='radio' id='c3' name='c'>ซึม แต่เรียกแล้วลืมตา <br>
-       <input type='radio' id='c4' name='c'>ซึมมาก ต้องกระตุ้นจึงลืมตา <br>
-       <input type='radio' id='c5' name='c'>ไม่รู้สึกตัว แม้กระตุ้นแล้ว <br>
+       <input type='radio' id='c1' name='c' onclick='cal()'>ตื่นดี พูดคุยรู้เรื่อง <br>
+       <input type='radio' id='c2' name='c' onclick='cal()'>สับสน กระสับกระส่ายที่เพิ่งเกิดขิ้น <br>
+       <input type='radio' id='c3' name='c' onclick='cal()'>ซึม แต่เรียกแล้วลืมตา <br>
+       <input type='radio' id='c4' name='c' onclick='cal()'>ซึมมาก ต้องกระตุ้นจึงลืมตา <br>
+       <input type='radio' id='c5' name='c' onclick='cal()'>ไม่รู้สึกตัว แม้กระตุ้นแล้ว <br>
        <br>
-       <button onclick='cal()'>cal</button>
+<!-- <button onclick='cal()'>cal</button> -->
+       <button onclick='clear2()'>clear</button>
 
 
     </main>
