@@ -27,9 +27,22 @@
       outline-color: #102000;
       outline-width: thick;
     }
-    input {
+    button.off {
+      padding: 4px 9px;
+      font-size: large;
+      border-radius: 5px;
+      border-color: #e140a2;
+      border-style: revert;
+      background-color: grey;
+      border-width: thick;
+      color: firebrick;
+      text-shadow: 1px 1px #666;
+      outline-color: #102000;
+      outline-width: thick;
+    }
+    input[type='number'] {
       width: 100px;
-      max-width: fit-content;
+/*       max-width: fit-content; */
     }
     div.c1 {
       border-radius: 5px;
@@ -216,6 +229,12 @@
       document.getElementById('out2').innerHTML = sug;
 
     }
+    function toggleven() {
+      if ( document.getElementById('ven').checked)
+      document.getElementById('ven').checked == true;
+      cal();
+
+    }
     </script>
 
     </header>
@@ -228,14 +247,14 @@
     ชีพจร <input type='number' id='pr' placeholder='bpm' min='0' max='200' onclick='this.select()' onchange='cal()'><br>
     หายใจ <input type='number' id='rr' placeholder='per min.' min='0' max='100' onclick='this.select()' onchange='cal()'><br>
     ความดันโลหิตค่าบน <input type='number' id='sbp' placeholder='mmHg' min='0' max='260' onclick='this.select()' onchange='cal()'><br>
-    &nbsp;<input type='checkbox' id='ven' onclick='cal()'>ใส่เครื่องช่วยหายใจ<br>
-    &nbsp;<input type='checkbox' id='inno' onclick='cal()'>ใช้ยาเพิ่มความดัน<br>
+    &nbsp;<input type="checkbox" id='ven' onclick='cal()'>ใส่เครื่องช่วยหายใจ<br>
+    &nbsp;<input type="checkbox" id='inno' onclick='cal()'>ใช้ยาเพิ่มความดัน<br>
     ความรู้สึกตัว <br>
-    &nbsp;<input type='radio' id='c1' name='c' onclick='cal()'>ตื่นดี พูดคุยรู้เรื่อง <br>
-    &nbsp;<input type='radio' id='c2' name='c' onclick='cal()'>สับสน กระสับกระส่ายที่เพิ่งเกิดขิ้น <br>
-    &nbsp;<input type='radio' id='c3' name='c' onclick='cal()'>ซึม แต่เรียกแล้วลืมตา <br>
-    &nbsp;<input type='radio' id='c4' name='c' onclick='cal()'>ซึมมาก ต้องกระตุ้นจึงลืมตา <br>
-    &nbsp;<input type='radio' id='c5' name='c' onclick='cal()'>ไม่รู้สึกตัว แม้กระตุ้นแล้ว <br>
+    &nbsp;<input type="radio" id='c1' name='c' onclick='cal()'>ตื่นดี พูดคุยรู้เรื่อง <br>
+    &nbsp;<input type="radio" id='c2' name='c' onclick='cal()'>สับสน กระสับกระส่ายที่เพิ่งเกิดขิ้น <br>
+    &nbsp;<input type="radio" id='c3' name='c' onclick='cal()'>ซึม แต่เรียกแล้วลืมตา <br>
+    &nbsp;<input type="radio" id='c4' name='c' onclick='cal()'>ซึมมาก ต้องกระตุ้นจึงลืมตา <br>
+    &nbsp;<input type="radio" id='c5' name='c' onclick='cal()'>ไม่รู้สึกตัว แม้กระตุ้นแล้ว <br>
     <br>
 <!-- <button onclick='cal()'>cal</button> -->
     <button onclick='clear2()'>clear</button>
